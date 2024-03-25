@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { Home, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { ModeToggle } from "./theme-toggle";
 
 const Header = () => {
