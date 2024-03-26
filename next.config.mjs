@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.cisin.com",
       },
+      {
+        protocol: "https",
+        hostname: "imgs.search.brave.com",
+      },
     ],
   },
 };

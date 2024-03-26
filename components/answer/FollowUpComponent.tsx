@@ -22,7 +22,7 @@ const FollowUpComponent = ({
 
   // 4. Returns the JSX for the FollowUpComponent.
   return (
-    <div className="bg-white shadow-lg mb-[150px] rounded-lg p-4 mt-4">
+    <div className="bg-white shadow-lg md:mb-[150px] rounded-lg p-4 mt-4">
       <div className="flex items-center">
         <h2 className="text-lg font-semibold flex-grow">Relevant</h2>
         <img src="./mistral.png" alt="mistral logo" className="w-6 h-6 mr-2" />

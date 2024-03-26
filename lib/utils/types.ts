@@ -51,3 +51,13 @@ export interface ResultsProps {
 export interface UserMessageComponentProps {
   message: string;
 }
+
+export interface SearchResult {
+  favicon: string;
+  link: string;
+  title: string;
+}
+
+export interface SearchResultsComponentProps {
+  searchResults: SearchResult[];
+}

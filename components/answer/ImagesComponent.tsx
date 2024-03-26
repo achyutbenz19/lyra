@@ -51,7 +51,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
 
   // 9. Render the 'ImagesComponent'
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 mt-4">
+    <div className="bg-white shadow-lg mb-[150px] md:mb-0 rounded-lg p-4 mt-4">
       <div className="flex items-center">
         <h2 className="text-lg font-semibold flex-grow">Images</h2>
         <img src="./brave.png" alt="brave logo" className="w-6 h-6" />

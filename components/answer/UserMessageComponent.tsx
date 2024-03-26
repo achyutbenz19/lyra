@@ -1,14 +1,14 @@
 import { UserMessageComponentProps } from "@/lib/utils/types";
-import { User } from "lucide-react";
+import { CornerDownRight } from "lucide-react";
 import Markdown from "react-markdown";
 
 const UserMessageComponent: React.FC<UserMessageComponentProps> = ({
   message,
 }) => {
   return (
-    <div className="flex flex-row space-x-2">
-      <User className="rounded-full h-10 w-10 mt-1 bg-neutral-200/50 p-2 text-4xl" />
-      <Markdown className="bg-neutral-200/50 dark:bg-neutral-800/60 w-full rounded-lg p-3 px-4">
+    <div className="flex flex-row rounded-lg bg-neutral-200/50">
+      <CornerDownRight className="h-6 w-8 mt-2.5 text-4xl pl-2" />
+      <Markdown className=" dark:bg-neutral-800/60 w-full py-3 pl-2 pr-4">
         {message}
       </Markdown>
     </div>
