@@ -1,14 +1,14 @@
-// 1. Define the 'LLMResponseComponentProps' interface with properties for 'llmResponse', 'currentLlmResponse', and 'index'
+"use client";
 interface LLMResponseComponentProps {
   llmResponse: string;
   currentLlmResponse: string;
   index: number;
 }
-
-// 2. Import the 'Markdown' component from 'react-markdown'
+import { Check, Copy } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
+import { useHover } from "usehooks-ts";
 
-// 3. Define the 'StreamingComponent' functional component that renders the 'currentLlmResponse'
 const StreamingComponent = ({
   currentLlmResponse,
 }: {
@@ -20,7 +20,6 @@ const StreamingComponent = ({
         <div className="bg-white shadow-lg rounded-lg p-4 mt-4">
           <div className="flex items-center">
             <h2 className="text-lg font-semibold flex-grow">Answer</h2>
-            <img src="./groq.png" alt="groq logo" className="w-6 h-6" />
           </div>
           {currentLlmResponse}
         </div>
@@ -29,33 +28,55 @@ const StreamingComponent = ({
   );
 };
 
-// 4. Define the 'LLMResponseComponent' functional component that takes 'llmResponse', 'currentLlmResponse', and 'index' as props
 const LLMResponseComponent = ({
   llmResponse,
   currentLlmResponse,
-  index,
 }: LLMResponseComponentProps) => {
-  // 5. Check if 'llmResponse' is not empty
   const hasLlmResponse = llmResponse && llmResponse.trim().length > 0;
+  const hoverRef = useRef(null);
+  const isHover = useHover(hoverRef);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [icon, setIcon] = useState(
+    <Copy className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
+  );
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    });
+  };
+
+  useEffect(() => {
+    if (copySuccess) {
+      setIcon(<Check className="h-4 w-4 text-green-600" />);
+      setTimeout(
+        () =>
+          setIcon(
+            <Copy className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
+          ),
+        2000,
+      );
+    }
+  }, [copySuccess]);
 
   return (
     <>
       {hasLlmResponse ? (
-        // 6. If 'llmResponse' is not empty, render a div with the 'Markdown' component
-        <div className="bg-white shadow-lg rounded-lg p-4 mt-4">
-          <div className="flex items-center">
-            <h2 className="text-lg font-semibold flex-grow">Answer</h2>
-            <img
-              src="./mistral.png"
-              alt="mistral logo"
-              className="w-6 h-6 mr-2"
-            />
-            <img src="./groq.png" alt="groq logo" className="w-6 h-6" />
+        <div ref={hoverRef} className="flex flex-col">
+          <div className="flex mt-3 flex-row space-x-2">
+            <Markdown className="bg-neutral-200 dark:bg-neutral-700/50 w-full rounded-lg p-3 px-4">
+              {llmResponse}
+            </Markdown>
           </div>
-          <Markdown>{llmResponse}</Markdown>
+          <div
+            onClick={() => handleCopy(llmResponse)}
+            className="duration-150 h-4 transition-all cursor-pointer mt-1 ml-1"
+          >
+            {isHover && icon}
+          </div>
         </div>
       ) : (
-        // 7. If 'llmResponse' is empty, render the 'StreamingComponent' with 'currentLlmResponse'
         <StreamingComponent currentLlmResponse={currentLlmResponse} />
       )}
     </>

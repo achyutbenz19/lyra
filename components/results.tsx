@@ -13,18 +13,12 @@ const Results = ({
   handleFollowUpClick,
 }: ResultsProps) => {
   return (
-    <div className="h-2">
+    <div className="flex justify-center items-center px-5 md:px-10 xl:px-20">
       {messages.length > 0 && (
-        <div className="flex flex-col h-10">
+        <div className="flex flex-col">
           {messages.map((message, index) => (
             <div key={`message-${index}`} className="flex flex-col md:flex-row">
               <div className="w-full md:w-3/4 md:pr-2">
-                {message.searchResults && (
-                  <SearchResultsComponent
-                    key={`searchResults-${index}`}
-                    searchResults={message.searchResults}
-                  />
-                )}
                 {message.type === "userMessage" && (
                   <UserMessageComponent message={message.userMessage} />
                 )}
@@ -34,6 +28,12 @@ const Results = ({
                   index={index}
                   key={`llm-response-${index}`}
                 />
+                {message.searchResults && (
+                  <SearchResultsComponent
+                    key={`searchResults-${index}`}
+                    searchResults={message.searchResults}
+                  />
+                )}
                 {message.followUp && (
                   <div className="flex flex-col">
                     <FollowUpComponent

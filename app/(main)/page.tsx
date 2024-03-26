@@ -85,7 +85,7 @@ const Chat = () => {
   const handleSubmit = async (input: string) => {
     if (!input) return;
     // await handleUserMessageSubmission(input);
-    setMessages(messageConstant)
+    setMessages(messageConstant);
   };
 
   return (

@@ -47,3 +47,7 @@ export interface ResultsProps {
   currentLlmResponse: string;
   handleFollowUpClick: (question: string) => void;
 }
+
+export interface UserMessageComponentProps {
+  message: string;
+}
