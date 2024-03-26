@@ -65,7 +65,7 @@ const LLMResponseComponent = ({
       {hasLlmResponse ? (
         <div ref={hoverRef} className="flex flex-col">
           <div className="flex mt-3 flex-row space-x-2">
-            <Markdown className="bg-neutral-200 dark:bg-neutral-700/50 w-full rounded-lg p-3 px-4">
+            <Markdown className="bg-neutral-200/70 dark:bg-neutral-700/50 w-full rounded-lg p-3 px-4">
               {llmResponse}
             </Markdown>
           </div>
