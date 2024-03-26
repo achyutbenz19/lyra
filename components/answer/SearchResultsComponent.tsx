@@ -5,10 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import {
-  Card,
-  CardContent,
-} from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchResult } from "@/lib/utils/types";
@@ -48,7 +45,7 @@ const SearchResultsComponent = ({
           <div className="space-y-2">
             {visibleResults.map((result, index) => (
               <Tooltip key={index}>
-                <TooltipTrigger className="border mr-2 p-1 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg">
+                <TooltipTrigger className="border mr-2 p-1 px-1.5 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg">
                   <Link href={result.link}>{result.title}</Link>
                 </TooltipTrigger>
                 <TooltipContent sideOffset={15}>

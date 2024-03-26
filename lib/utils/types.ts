@@ -61,3 +61,11 @@ export interface SearchResult {
 export interface SearchResultsComponentProps {
   searchResults: SearchResult[];
 }
+
+export interface FollowUp {
+  choices: {
+    message: {
+      content: string;
+    };
+  }[];
+}
