@@ -41,3 +41,9 @@ export interface FollowUp {
 export interface ChatInputProps {
   handleSubmit: (message: string) => void;
 }
+
+export interface ResultsProps {
+  messages: Message[];
+  currentLlmResponse: string;
+  handleFollowUpClick: (question: string) => void;
+}

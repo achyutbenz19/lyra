@@ -2,9 +2,11 @@
 import ChatInput from "@/components/chat-input";
 import Header from "@/components/header";
 import { readStreamableValue, useActions } from "ai/rsc";
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { AI } from "../api/actions";
 import { Message, SearchResult, StreamMessage } from "@/lib/utils/types";
+import Results from "@/components/results";
+import { messageConstant } from "@/message";
 
 const Chat = () => {
   const { myAction } = useActions<typeof AI>();
@@ -13,7 +15,7 @@ const Chat = () => {
 
   const handleFollowUpClick = useCallback(async (question: string) => {
     setCurrentLlmResponse("");
-    await handleUserMessageSubmission(question);
+    // await handleUserMessageSubmission(question);
   }, []);
 
   const handleUserMessageSubmission = async (
@@ -50,7 +52,7 @@ const Chat = () => {
               typedMessage.llmResponse !== lastAppendedResponse
             ) {
               currentMessage.content += typedMessage.llmResponse;
-              lastAppendedResponse = typedMessage.llmResponse; // Update last appended response
+              lastAppendedResponse = typedMessage.llmResponse;
             }
             if (typedMessage.llmResponseEnd) {
               currentMessage.isStreaming = false;
@@ -82,11 +84,18 @@ const Chat = () => {
 
   const handleSubmit = async (input: string) => {
     if (!input) return;
+    // await handleUserMessageSubmission(input);
+    setMessages(messageConstant)
   };
 
   return (
     <main>
       <Header />
+      <Results
+        currentLlmResponse={currentLlmResponse}
+        messages={messages}
+        handleFollowUpClick={handleFollowUpClick}
+      />
       <ChatInput handleSubmit={handleSubmit} />
     </main>
   );
