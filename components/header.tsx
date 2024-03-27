@@ -29,7 +29,7 @@ const Header = () => {
           <div className="flex flex-col justify-center items-center h-full py-4">
             <div className="text-neutral-500">Coming soon!</div>
           </div>
-          <SheetFooter>
+          <SheetFooter className="flex flex-row-reverse">
             <ModeToggle />
           </SheetFooter>
         </SheetContent>
