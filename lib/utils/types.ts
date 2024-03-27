@@ -84,3 +84,12 @@ export interface Image {
 export interface ImagesComponentProps {
   images: Image[];
 }
+
+export interface Video {
+  link: string;
+  imageUrl: string;
+}
+
+export interface VideosComponentProps {
+  videos: Video[];
+}

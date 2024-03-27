@@ -20,10 +20,10 @@ const SearchResultsComponent = ({
   const visibleResults = isExpanded ? searchResults : searchResults.slice(0, 3);
 
   return (
-    <div className="flex flex-wrap mt-3 my-2">
+    <div className="flex flex-col mt-3 my-2">
       <h2 className="text-lg font-semibold flex-grow">Sources</h2>
       {searchResults.length === 0 ? (
-        <div className="flex flex-wrap">
+        <div className="flex mt-2 flex-wrap">
           {Array.from({ length: isExpanded ? searchResults.length : 4 }).map(
             (_, index) => (
               <div
@@ -31,7 +31,7 @@ const SearchResultsComponent = ({
                 className="mr-2 p-1 border-2 px-1.5 max-w-lg text-sm bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
               >
                 <div className="flex items-center space-x-2 px-3 rounded-lg">
-                  <div className="w-6 rounded animate-pulse" />
+                  <div className="w-6 h-3 rounded animate-pulse" />
                 </div>
               </div>
             ),
@@ -67,7 +67,7 @@ const SearchResultsComponent = ({
       {searchResults.length !== 0 && (
         <div
           onClick={toggleExpansion}
-          className="border cursor-pointer mr-2 mt-2 p-1 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
+          className="border cursor-pointer mr-2 mt-2 p-1 w-fit text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
         >
           {!isExpanded ? (
             <span className="text-xs font-semibold">View more</span>

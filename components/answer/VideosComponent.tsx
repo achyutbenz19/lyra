@@ -1,31 +1,17 @@
-// 1. Import the necessary hooks from the 'react' library
+import { VideosComponentProps } from "@/lib/utils/types";
+import { Video } from "lucide-react";
 import { useState, useEffect } from "react";
 
-// 2. Define the 'Video' interface to represent a video object
-interface Video {
-  link: string;
-  imageUrl: string;
-}
-
-// 3. Define the 'VideosComponentProps' interface to specify the props for the 'VideosComponent'
-interface VideosComponentProps {
-  videos: Video[];
-}
-
-// 4. Define the 'VideosComponent' functional component that accepts 'VideosComponentProps'
 const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
-  // 5. Declare state variables using the 'useState' hook
   const [showMore, setShowMore] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [loadedImages, setLoadedImages] = useState<boolean[]>([]);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  // 6. Use the 'useEffect' hook to initialize the 'loadedImages' state based on the number of videos
   useEffect(() => {
     setLoadedImages(Array(videos.length).fill(false));
   }, [videos]);
 
-  // 7. Define the 'handleImageLoad' function to update the 'loadedImages' state when an image is loaded
   const handleImageLoad = (index: number) => {
     setLoadedImages((prevLoadedImages) => {
       const updatedLoadedImages = [...prevLoadedImages];
@@ -34,23 +20,19 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
     });
   };
 
-  // 8. Define the 'handleVideoClick' function to set the 'selectedVideo' state when a video is clicked
   const handleVideoClick = (link: string) => {
     setSelectedVideo(link);
   };
 
-  // 9. Define the 'handleCloseModal' function to close the video modal and exit full-screen mode
   const handleCloseModal = () => {
     setSelectedVideo(null);
     setIsFullScreen(false);
   };
 
-  // 10. Define the 'toggleFullScreen' function to toggle the full-screen mode
   const toggleFullScreen = () => {
     setIsFullScreen(!isFullScreen);
   };
 
-  // 11. Define the 'VideosSkeleton' component to display a loading skeleton while videos are loading
   const VideosSkeleton = () => (
     <>
       {Array.from({ length: 3 }).map((_, index) => (
@@ -69,18 +51,10 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
     </>
   );
 
-  // 12. Render the 'VideosComponent' JSX
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 mt-4 w-full">
-      {/* 13. Render the header with the "Videos" title and the Serper logo */}
-      <div className="flex items-center">
-        <h2 className="text-lg font-semibold flex-grow">Videos</h2>
-        <img src="./serper.png" alt="serper logo" className="w-6 h-6" />
-      </div>
-
-      {/* 14. Render the video thumbnails */}
+    <>
       <div
-        className={`flex flex-wrap mx-1 w-full transition-all duration-500 ${
+        className={`flex flex-wrap border-t mt-3 md:mb-0 w-full transition-all duration-500 ${
           showMore ? "max-h-[500px]" : "max-h-[200px]"
         } overflow-hidden`}
       >
@@ -90,7 +64,7 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
           videos.slice(0, showMore ? 9 : 3).map((video, index) => (
             <div
               key={index}
-              className="transition ease-in-out duration-200 transform hover:-translate-y-1 hover:scale-110 w-1/3 p-1 cursor-pointer"
+              className="transition mt-1 ease-in-out p-2 duration-200 transform hover:-translate-y-1 hover:scale-105 w-1/3 cursor-pointer"
               onClick={() => handleVideoClick(video.link)}
             >
               {!loadedImages[index] && (
@@ -107,24 +81,24 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
                   }`}
                   onLoad={() => handleImageLoad(index)}
                 />
+                <div className="absolute bg-black p-1 rounded-lg flex flex-row space-x-2 bottom-2 right-2">
+                  <Video className="text-white rounded-lg h-4 w-4" />
+                </div>
               </div>
             </div>
           ))
         )}
       </div>
-      {/* 15. Render the "Show More" or "Show Less" button if there are more than 3 videos */}
       {videos.length > 3 && (
-        <div className="flex justify-center mt-4">
+        <div className="flex mt-2 mb-[150px]">
           <button
-            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            className="text-sm ml-1 px-1.5 font-semibold hover:bg-neutral-200 hover:dark:bg-neutral-800 py-1 border rounded-lg"
             onClick={() => setShowMore(!showMore)}
           >
             {showMore ? "Show Less" : "Show More"}
           </button>
         </div>
       )}
-
-      {/* 16. Render the video modal when a video is selected */}
       {selectedVideo && (
         <div
           className={`fixed ${
@@ -136,7 +110,6 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
           } bg-black bg-opacity-75 flex items-center justify-center transition-all duration-300 rounded-lg shadow-lg border-4 border-white`}
         >
           <div className="relative w-full h-full">
-            {/* 17. Render the YouTube video iframe */}
             <iframe
               src={`https://www.youtube.com/embed/${getYouTubeVideoId(
                 selectedVideo,
@@ -146,8 +119,6 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
               className="w-full h-full rounded-lg"
               allow="autoplay"
             ></iframe>
-
-            {/* 18. Render the close button for the video modal */}
             <button
               className="absolute top-2 right-2 p-2 bg-white text-black rounded-full hover:bg-gray-200 focus:outline-none"
               onClick={handleCloseModal}
@@ -167,8 +138,6 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
                 />
               </svg>
             </button>
-
-            {/* 19. Render the full-screen toggle button */}
             <button
               className="absolute bottom-2 right-2 p-2 bg-white text-black rounded-full hover:bg-gray-200 focus:outline-none"
               onClick={toggleFullScreen}
@@ -185,7 +154,7 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                    d="M15 3h5m0 0v5m0-5l-7 7M9 21H4m0 0v-5m0 5l7-7m5 7v5m0-5h5"
                   />
                 </svg>
               ) : (
@@ -208,11 +177,10 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
-// 20. Define the 'getYouTubeVideoId' function to extract the YouTube video ID from a URL
 const getYouTubeVideoId = (url: string) => {
   const match = url.match(
     /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(?:embed\/)?(?:v\/)?(?:shorts\/)?(?:\S+)/,

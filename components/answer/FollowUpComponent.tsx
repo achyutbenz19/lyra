@@ -26,7 +26,7 @@ const FollowUpComponent = ({
                   onClick={() => handleQuestionClick(question)}
                 >
                   <p className="hover:underline">{question}</p>
-                  <Plus className="w-5 h-5" />
+                  <Plus className="w-5 h-5 md:block hidden" />
                 </li>
               ),
             )}

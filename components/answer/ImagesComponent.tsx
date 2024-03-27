@@ -33,7 +33,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
   };
 
   return (
-    <div className="mb-[150px] md:mb-0">
+    <>
       <div
         className={`flex flex-wrap mx-1 transition-all duration-500 ${
           showMore ? "max-h-[500px]" : "max-h-[200px]"
@@ -62,7 +62,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
       {images.length > 3 && (
         <div className="flex mt-2">
           <button
-            className="text-sm px-1.5 font-semibold hover:bg-neutral-200 hover:dark:bg-neutral-800 py-1 border rounded-lg"
+            className="text-sm ml-1 px-1.5 font-semibold hover:bg-neutral-200 hover:dark:bg-neutral-800 py-1 border rounded-lg"
             onClick={() => setShowMore(!showMore)}
           >
             {showMore ? "Show Less" : "Show More"}
@@ -71,7 +71,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
       )}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-lg overflow-auto"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-lg overflow-auto"
           onClick={handleCloseModal}
         >
           <div className="flex justify-center items-center w-full h-full min-h-screen p-4">
@@ -86,7 +86,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
