@@ -1,24 +1,11 @@
-// 1. Import the 'useState' hook from React
+import { ImagesComponentProps } from "@/lib/utils/types";
+import Image from "next/image";
 import { useState } from "react";
 
-// 2. Define the 'Image' interface with a required 'link' property and an optional 'alt' property
-interface Image {
-  link: string;
-  alt?: string;
-}
-
-// 3. Define the 'ImagesComponentProps' interface with an 'images' property of type 'Image[]'
-interface ImagesComponentProps {
-  images: Image[];
-}
-
-// 4. Define the 'ImagesComponent' functional component that takes 'images' as a prop
 const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
-  // 5. Use the 'useState' hook to manage the 'showMore' and 'selectedImage' state
   const [showMore, setShowMore] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // 6. Define the 'ImagesSkeleton' component to render a loading skeleton
   const ImagesSkeleton = () => (
     <>
       {Array.from({ length: showMore ? 9 : 3 }).map((_, index) => (
@@ -37,46 +24,35 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
     </>
   );
 
-  // 7. Define the 'handleImageClick' function to set the 'selectedImage' state
   const handleImageClick = (link: string) => {
     setSelectedImage(link);
   };
 
-  // 8. Define the 'handleCloseModal' function to close the modal when clicking outside
   const handleCloseModal = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      setSelectedImage(null);
-    }
+    setSelectedImage(null);
   };
 
-  // 9. Render the 'ImagesComponent'
   return (
-    <div className="bg-white shadow-lg mb-[150px] md:mb-0 rounded-lg p-4 mt-4">
-      <div className="flex items-center">
-        <h2 className="text-lg font-semibold flex-grow">Images</h2>
-        <img src="./brave.png" alt="brave logo" className="w-6 h-6" />
-      </div>
+    <div className="mb-[150px] md:mb-0">
       <div
         className={`flex flex-wrap mx-1 transition-all duration-500 ${
           showMore ? "max-h-[500px]" : "max-h-[200px]"
         } overflow-hidden`}
       >
         {images.length === 0 ? (
-          // 10. Render the 'ImagesSkeleton' if there are no images
           <ImagesSkeleton />
         ) : (
-          // 11. Render the images with a hover effect and click handler
           images.slice(0, showMore ? 9 : 3).map((image, index) => (
             <div
               key={index}
-              className="transition ease-in-out hover:-translate-y-1 hover:scale-105 duration-200 w-1/3 p-1 cursor-pointer"
+              className="grid transition pt-2 ease-in-out hover:-translate-y-1 hover:scale-105 duration-200 w-1/3 p-1 cursor-pointer"
               onClick={() => handleImageClick(image.link)}
             >
               <div className="w-full overflow-hidden aspect-square">
                 <img
                   src={image.link}
                   alt={image.alt || `Image ${index}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
             </div>
@@ -84,10 +60,9 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
         )}
       </div>
       {images.length > 3 && (
-        // 12. Render a 'Show More/Show Less' button if there are more than 3 images
-        <div className="flex justify-center mt-4">
+        <div className="flex mt-2">
           <button
-            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            className="text-sm px-1.5 font-semibold hover:bg-neutral-200 hover:dark:bg-neutral-800 py-1 border rounded-lg"
             onClick={() => setShowMore(!showMore)}
           >
             {showMore ? "Show Less" : "Show More"}
@@ -95,17 +70,19 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
         </div>
       )}
       {selectedImage && (
-        // 13. Render a modal with the selected image if 'selectedImage' is not null
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+          className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-lg overflow-auto"
           onClick={handleCloseModal}
         >
-          <div className="max-w-5xl max-h-full">
-            <img
-              src={selectedImage}
-              alt="Full size"
-              className="max-w-full max-h-full"
-            />
+          <div className="flex justify-center items-center w-full h-full min-h-screen p-4">
+            <div className="relative max-w-5xl mt-10 max-h-[80vh] bg-white rounded-lg shadow-xl overflow-auto">
+              <img
+                src={selectedImage}
+                alt="Full size"
+                className="max-w-full max-h-full object-contain"
+                style={{ maxWidth: "100%", maxHeight: "100%" }}
+              />
+            </div>
           </div>
         </div>
       )}

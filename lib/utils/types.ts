@@ -75,3 +75,12 @@ export interface LLMResponseComponentProps {
   currentLlmResponse: string;
   index: number;
 }
+
+export interface Image {
+  link: string;
+  alt?: string;
+}
+
+export interface ImagesComponentProps {
+  images: Image[];
+}
