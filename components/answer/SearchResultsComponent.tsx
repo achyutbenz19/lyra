@@ -42,7 +42,14 @@ const SearchResultsComponent = ({
           <div className="space-y-2">
             {visibleResults.map((result, index) => (
               <Tooltip key={index}>
-                <TooltipTrigger className="border mr-2 p-1 px-1.5 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg">
+                <TooltipTrigger className="flex lg:space-x-0 space-x-2 flex-row border mr-2 p-1 px-1.5 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg">
+                  <Image
+                    src={result.favicon}
+                    className="h-5 w-5 lg:hidden"
+                    height={20}
+                    width={20}
+                    alt={result.favicon}
+                  />
                   <Link href={result.link}>{result.title}</Link>
                 </TooltipTrigger>
                 <TooltipContent sideOffset={15}>

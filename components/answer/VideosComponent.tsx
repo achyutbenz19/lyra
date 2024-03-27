@@ -54,7 +54,7 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
   return (
     <>
       <div
-        className={`flex flex-wrap border-t mt-3 md:mb-0 w-full transition-all duration-500 ${
+        className={`flex md:mx-0 flex-wrap border-t mt-3 md:mb-0 w-full transition-all duration-500 ${
           showMore ? "max-h-[500px]" : "max-h-[200px]"
         } overflow-hidden`}
       >

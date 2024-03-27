@@ -13,7 +13,7 @@ const Results = ({
   handleFollowUpClick,
 }: ResultsProps) => {
   return (
-    <div className="flex md:my-24 justify-center items-center px-6 md:px-12 xl:px-24">
+    <div className="flex md:my-16 justify-center items-center px-12 xl:px-24">
       {messages.length > 0 && (
         <div className="flex flex-col">
           {messages.map((message, index) => (

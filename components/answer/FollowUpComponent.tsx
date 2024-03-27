@@ -13,7 +13,7 @@ const FollowUpComponent = ({
   };
 
   return (
-    <div className="border-t mt-3">
+    <div className="mt-3 border-t md:mx-0 mx-2">
       <div className="md:mb-[150px] rounded-lg mt-4">
         <h2 className="text-lg font-semibold flex-grow">Related</h2>
         <ul className="mt-2">
