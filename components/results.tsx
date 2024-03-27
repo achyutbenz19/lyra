@@ -13,7 +13,7 @@ const Results = ({
   handleFollowUpClick,
 }: ResultsProps) => {
   return (
-    <div className="flex justify-center items-center px-5 md:px-10 xl:px-20">
+    <div className="flex md:my-24 justify-center items-center px-6 md:px-12 xl:px-24">
       {messages.length > 0 && (
         <div className="flex flex-col">
           {messages.map((message, index) => (
@@ -44,17 +44,17 @@ const Results = ({
                   </div>
                 )}
               </div>
-              <div className="w-full md:w-1/4 lg:pl-2">
-                {message.videos && (
-                  <VideosComponent
-                    key={`videos-${index}`}
-                    videos={message.videos}
-                  />
-                )}
+              <div className="w-full z-10 md:w-1/4 lg:pl-2">
                 {message.images && (
                   <ImagesComponent
                     key={`images-${index}`}
                     images={message.images}
+                  />
+                )}
+                {message.videos && (
+                  <VideosComponent
+                    key={`videos-${index}`}
+                    videos={message.videos}
                   />
                 )}
               </div>

@@ -1,10 +1,6 @@
 "use client";
-interface LLMResponseComponentProps {
-  llmResponse: string;
-  currentLlmResponse: string;
-  index: number;
-}
-import { Check, Copy } from "lucide-react";
+import { LLMResponseComponentProps } from "@/lib/utils/types";
+import { Check, Clipboard } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { useHover } from "usehooks-ts";
@@ -37,7 +33,7 @@ const LLMResponseComponent = ({
   const isHover = useHover(hoverRef);
   const [copySuccess, setCopySuccess] = useState(false);
   const [icon, setIcon] = useState(
-    <Copy className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
+    <Clipboard className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
   );
 
   const handleCopy = (text: string) => {
@@ -53,7 +49,7 @@ const LLMResponseComponent = ({
       setTimeout(
         () =>
           setIcon(
-            <Copy className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
+            <Clipboard className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
           ),
         2000,
       );

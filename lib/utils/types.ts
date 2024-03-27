@@ -69,3 +69,9 @@ export interface FollowUp {
     };
   }[];
 }
+
+export interface LLMResponseComponentProps {
+  llmResponse: string;
+  currentLlmResponse: string;
+  index: number;
+}

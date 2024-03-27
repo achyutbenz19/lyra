@@ -16,30 +16,27 @@ const SearchResultsComponent = ({
   searchResults: SearchResult[];
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
   const toggleExpansion = () => setIsExpanded(!isExpanded);
-
   const visibleResults = isExpanded ? searchResults : searchResults.slice(0, 3);
 
-  const SearchResultsSkeleton = () => (
-    <>
-      {Array.from({ length: isExpanded ? searchResults.length : 3 }).map(
-        (_, index) => (
-          <div key={index} className="p-2 w-full sm:w-1/2 md:w-1/4">
-            <div className="flex items-center space-x-2 bg-gray-100 p-3 rounded-lg h-full">
-              <div className="w-5 h-5 bg-gray-200 rounded animate-pulse"></div>
-              <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
-        ),
-      )}
-    </>
-  );
-
   return (
-    <div className="flex flex-wrap my-2">
+    <div className="flex flex-wrap mt-3 my-2">
+      <h2 className="text-lg font-semibold flex-grow">Sources</h2>
       {searchResults.length === 0 ? (
-        <SearchResultsSkeleton />
+        <div className="flex flex-wrap">
+          {Array.from({ length: isExpanded ? searchResults.length : 4 }).map(
+            (_, index) => (
+              <div
+                key={index}
+                className="mr-2 p-1 border-2 px-1.5 max-w-lg text-sm bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
+              >
+                <div className="flex items-center space-x-2 px-3 rounded-lg">
+                  <div className="w-6 rounded animate-pulse" />
+                </div>
+              </div>
+            ),
+          )}
+        </div>
       ) : (
         <TooltipProvider>
           <div className="space-y-2">
@@ -67,16 +64,18 @@ const SearchResultsComponent = ({
           </div>
         </TooltipProvider>
       )}
-      <div
-        onClick={toggleExpansion}
-        className="border cursor-pointer mr-2 mt-2 p-1 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
-      >
-        {!isExpanded ? (
-          <span className="text-xs font-semibold">View more</span>
-        ) : (
-          <span className="text-sm font-semibold">Show Less</span>
-        )}
-      </div>
+      {searchResults.length !== 0 && (
+        <div
+          onClick={toggleExpansion}
+          className="border cursor-pointer mr-2 mt-2 p-1 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
+        >
+          {!isExpanded ? (
+            <span className="text-xs font-semibold">View more</span>
+          ) : (
+            <span className="text-sm font-semibold">Show Less</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

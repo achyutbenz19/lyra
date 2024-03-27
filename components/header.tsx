@@ -12,7 +12,7 @@ import { ModeToggle } from "./theme-toggle";
 
 const Header = () => {
   return (
-    <div className="p-2 px-4 flex flex-row justify-between top-0">
+    <div className="sticky z-20 bg-neutral-50 dark:bg-neutral-950 p-2 px-4 flex flex-row justify-between top-0">
       <div className="flex items-center justify-center h-ful">
         <span className="text-2xl font-semibold">lyra.</span>
       </div>
