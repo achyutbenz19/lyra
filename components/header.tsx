@@ -9,6 +9,8 @@ import {
 } from "./ui/sheet";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./theme-toggle";
+import { SignOutButton } from "@clerk/nextjs";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
@@ -29,7 +31,10 @@ const Header = () => {
           <div className="flex flex-col justify-center items-center h-full py-4">
             <div className="text-neutral-500">Coming soon!</div>
           </div>
-          <SheetFooter className="flex flex-row-reverse">
+          <SheetFooter className="flex justify-between flex-row-reverse">
+            <Button>
+              <SignOutButton />
+            </Button>
             <ModeToggle />
           </SheetFooter>
         </SheetContent>

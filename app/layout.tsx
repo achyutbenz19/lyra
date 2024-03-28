@@ -4,7 +4,7 @@ import { AI } from "./api/actions";
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "lyra",
