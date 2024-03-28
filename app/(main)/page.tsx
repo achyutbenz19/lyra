@@ -15,7 +15,7 @@ const Chat = () => {
 
   const handleFollowUpClick = useCallback(async (question: string) => {
     setCurrentLlmResponse("");
-    // await handleUserMessageSubmission(question);
+    await handleUserMessageSubmission(question);
   }, []);
 
   const handleUserMessageSubmission = async (
@@ -84,8 +84,7 @@ const Chat = () => {
 
   const handleSubmit = async (input: string) => {
     if (!input) return;
-    // await handleUserMessageSubmission(input);
-    setMessages(messageConstant);
+    await handleUserMessageSubmission(input);
   };
 
   return (

@@ -15,7 +15,7 @@ const Results = ({
   return (
     <div className="flex md:my-16 justify-center items-center px-12 xl:px-24">
       {messages.length > 0 && (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           {messages.map((message, index) => (
             <div key={`message-${index}`} className="flex flex-col md:flex-row">
               <div className="w-full md:w-3/4 md:pr-2">
