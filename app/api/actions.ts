@@ -289,11 +289,11 @@ const relevantQuestions = async (sources: SearchResult[]): Promise<any> => {
   });
 };
 
-async function myAction(userMessage: string): Promise<any> {
+async function myAction(message: string): Promise<any> {
   "use server";
+  const userMessage = message.replace("LLM", "Large Language Models")
   const streamable = createStreamableValue({});
   (async () => {
-    console.log("userMessage", userMessage);
     const [images, sources, videos] = await Promise.all([
       getImages(userMessage),
       getSources(userMessage),
@@ -309,7 +309,8 @@ async function myAction(userMessage: string): Promise<any> {
         {
           role: "system",
           content: `
-            - Here is my query "${userMessage}", respond back with an answer that is as long as possible in markdown. If you can't find any relevant results, respond with "No relevant results found." `,
+            - When you submit a query specified as ${userMessage}, my response will be crafted to provide a comprehensive and technical explanation, formatted in markdown. The focus will be on delivering detailed, technical content, drawing from a wide range of sources to ensure accuracy and depth. For instance, if your question pertains to a complex subject within technology, science, programming, or any specialized field, I will delve into the specifics, terminology, methodologies, and frameworks relevant to your query. for example, an LLM means a Large Language Model. Answer technically
+              Should your question align with areas where real-time data or recent developments are essential. However, in cases where the information is not available or the query does not yield relevant results, I will clearly state, "No relevant results found.`,
         },
         {
           role: "user",
