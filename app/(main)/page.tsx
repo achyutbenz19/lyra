@@ -7,6 +7,7 @@ import { AI } from "../api/actions";
 import { Message, SearchResult, StreamMessage } from "@/lib/utils/types";
 import Results from "@/components/results";
 import Hero from "@/components/hero";
+import { messageConstant } from "@/message";
 
 const Chat = () => {
   const { myAction } = useActions<typeof AI>();
@@ -84,6 +85,7 @@ const Chat = () => {
 
   const handleSubmit = async (input: string) => {
     if (!input) return;
+    // setMessages(messageConstant)
     await handleUserMessageSubmission(input);
   };
 

@@ -11,12 +11,19 @@ import { Menu } from "lucide-react";
 import { ModeToggle } from "./theme-toggle";
 import { SignOutButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   return (
     <div className="sticky z-20 bg-neutral-50 dark:bg-neutral-950 p-2 px-4 flex flex-row justify-between top-0">
       <div className="flex items-center justify-center h-ful">
-        <span className="text-2xl font-semibold">lyra.</span>
+        <span
+          onClick={() => window.location.reload()}
+          className="text-2xl cursor-pointer font-semibold"
+        >
+          lyra.
+        </span>
       </div>
       <Sheet>
         <SheetTrigger asChild>
