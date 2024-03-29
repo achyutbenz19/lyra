@@ -28,7 +28,7 @@ const SearchResultsComponent = ({
             (_, index) => (
               <div
                 key={index}
-                className="mr-2 p-1 border-2 px-1.5 max-w-lg text-sm bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg"
+                className="mr-2 p-1 border-2 px-1.5 max-w-lg text-sm bg-neutral-200 dark:bg-neutral-800 rounded-lg"
               >
                 <div className="flex items-center space-x-2 px-3 rounded-lg">
                   <div className="w-6 h-3 rounded animate-pulse" />
