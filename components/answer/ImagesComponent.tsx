@@ -11,13 +11,13 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
       {Array.from({ length: showMore ? 9 : 3 }).map((_, index) => (
         <div key={index} className="w-1/3 p-1">
           <div className="w-full overflow-hidden aspect-square">
-            <div className="w-full h-full bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-full h-full bg-neutral-200 dark:bg-neutral-800 rounded animate-pulse"></div>
           </div>
         </div>
       ))}
-      <div className="flex justify-center mt-4 w-full">
+      <div className="flex justify-left mt-4 w-full">
         <div
-          className="bg-gray-200 rounded-lg animate-pulse py-5 px-15 "
+          className="bg-neutral-200 dark:bg-neutral-800 rounded-lg animate-pulse py-5 px-15 "
           style={{ height: "24px", width: "85px" }}
         ></div>
       </div>
@@ -39,7 +39,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
           showMore ? "max-h-[500px]" : "max-h-[200px]"
         } overflow-hidden`}
       >
-        {images.length === 0 ? (
+        {images.length !== 0 ? (
           <ImagesSkeleton />
         ) : (
           images.slice(0, showMore ? 9 : 3).map((image, index) => (

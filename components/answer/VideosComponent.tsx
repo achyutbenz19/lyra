@@ -38,13 +38,13 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
       {Array.from({ length: 3 }).map((_, index) => (
         <div key={index} className="w-1/3 p-1">
           <div className="w-full overflow-hidden aspect-video">
-            <div className="w-full h-24 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-full h-24 bg-neutral-200 dark:bg-neutral-800 rounded animate-pulse"></div>
           </div>
         </div>
       ))}
-      <div className="flex justify-center mt-4 w-full">
+      <div className="flex justify-left mt-4 w-full">
         <div
-          className="bg-gray-200 rounded-lg animate-pulse py-5 px-15 "
+          className="bg-neutral-200 dark:bg-neutral-800 rounded-lg animate-pulse py-5 px-15"
           style={{ height: "24px", width: "85px" }}
         ></div>
       </div>
