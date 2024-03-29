@@ -6,7 +6,7 @@ import React, { useCallback, useState } from "react";
 import { AI } from "../api/actions";
 import { Message, SearchResult, StreamMessage } from "@/lib/utils/types";
 import Results from "@/components/results";
-import { messageConstant } from "@/message";
+import Hero from "@/components/hero";
 
 const Chat = () => {
   const { myAction } = useActions<typeof AI>();
@@ -90,6 +90,7 @@ const Chat = () => {
   return (
     <main>
       <Header />
+      <Hero handleClick={handleSubmit} messages={messages} />
       <Results
         currentLlmResponse={currentLlmResponse}
         messages={messages}

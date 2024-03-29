@@ -93,3 +93,16 @@ export interface Video {
 export interface VideosComponentProps {
   videos: Video[];
 }
+
+export interface HeroProps {
+  messages: Message[];
+  handleClick: (question: string) => void;
+}
+
+export interface HeroQuestionProps {
+  question: {
+    question: string;
+    emoji: string;
+  };
+  handleClick: (question: string) => void;
+}

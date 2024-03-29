@@ -39,7 +39,7 @@ const SearchResultsComponent = ({
         </div>
       ) : (
         <TooltipProvider>
-          <div className="space-y-2">
+          <div className="space-y-2 mt-3">
             {visibleResults.map((result, index) => (
               <Tooltip key={index}>
                 <TooltipTrigger className="flex lg:space-x-0 space-x-2 flex-row border mr-2 p-1 px-1.5 max-w-lg text-sm truncate hover:bg-neutral-200 hover:dark:bg-neutral-800 rounded-lg">
