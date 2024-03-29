@@ -39,7 +39,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ images }) => {
           showMore ? "max-h-[500px]" : "max-h-[200px]"
         } overflow-hidden`}
       >
-        {images.length !== 0 ? (
+        {images.length === 0 ? (
           <ImagesSkeleton />
         ) : (
           images.slice(0, showMore ? 9 : 3).map((image, index) => (
