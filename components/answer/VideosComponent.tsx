@@ -69,7 +69,7 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
             >
               {!loadedImages[index] && (
                 <div className="w-full overflow-hidden aspect-video">
-                  <div className="w-full h-24 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="w-full h-24 bg-neutral-200  rounded animate-pulse"></div>
                 </div>
               )}
               <div className="w-full overflow-hidden aspect-video transition-all duration-200">
@@ -120,7 +120,7 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
               allow="autoplay"
             ></iframe>
             <button
-              className="absolute top-2 right-2 p-2 bg-white text-black rounded-full hover:bg-gray-200 focus:outline-none"
+              className="absolute top-2 right-2 p-2 bg-white text-black rounded-full hover:bg-neutral-200  focus:outline-none"
               onClick={handleCloseModal}
             >
               <svg
@@ -139,7 +139,7 @@ const VideosComponent: React.FC<VideosComponentProps> = ({ videos }) => {
               </svg>
             </button>
             <button
-              className="absolute bottom-2 right-2 p-2 bg-white text-black rounded-full hover:bg-gray-200 focus:outline-none"
+              className="absolute bottom-2 right-2 p-2 bg-white text-black rounded-full hover:bg-neutral-200  focus:outline-none"
               onClick={toggleFullScreen}
             >
               {isFullScreen ? (
