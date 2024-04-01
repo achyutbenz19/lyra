@@ -9,7 +9,7 @@ const Hero = ({ messages, handleClick }: HeroProps) => {
       {messages.length === 0 && (
         <div className="fle flex-col w-full text-center mt-20 lg:mt-32 justify-center">
           <h1 className="text-5xl lg:text-6xl font-semibold ease-in-out">
-            Where curiosity begins
+            start exploring.
           </h1>
           <p className="mt-4 md:mt-8">
             looking for ideas?{" "}
