@@ -291,7 +291,7 @@ const relevantQuestions = async (sources: SearchResult[]): Promise<any> => {
 
 async function myAction(message: string): Promise<any> {
   "use server";
-  const userMessage = message.replace("LLM", "Large Language Models")
+  const userMessage = message.replace("LLM", "Large Language Models");
   const streamable = createStreamableValue({});
   (async () => {
     const [images, sources, videos] = await Promise.all([
