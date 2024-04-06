@@ -14,7 +14,7 @@ export function createClerkSupabaseClient() {
       global: {
         fetch: async (url, options = {}) => {
           const clerkToken = await window.Clerk.session?.getToken({
-            template: "supabase",
+            template: "lyra-supabase",
           });
 
           const headers = new Headers(options?.headers);
