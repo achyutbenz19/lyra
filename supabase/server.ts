@@ -6,7 +6,7 @@ export async function createClerkSupabaseClient() {
   const cookieStore = cookies();
   const { getToken } = auth();
 
-  const token = await getToken({ template: "supabase" });
+  const token = await getToken({ template: "lyra-supabase" });
   const authToken = token ? { Authorization: `Bearer ${token}` } : null;
 
   return createServerClient(
